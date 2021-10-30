@@ -1,4 +1,10 @@
 import Character from '../Character';
+import Bowman from '../Bowman';
+import Swordsman from '../Swordsman';
+import Magician from '../Magician';
+import Daemon from '../Daemon';
+import Undead from '../Undead';
+import Zombie from '../Zombie';
 
 test('Check Name errors', () => {
   expect(() => new Character(32, 'Fairy')).toThrow();
@@ -21,6 +27,23 @@ test('Test Damage', () => {
   expect(received.health).toEqual(expected);
 });
 
+test('Test Levelup', () => {
+  const expected = 30;
+
+  const received = new Character('Sandro', 'Bowman');
+  received.levelUp();
+
+  expect(received.defence).toEqual(expected);
+});
+
+test('Test Levelup for dead character', () => {
+  expect(() => {
+    const received = new Character('Sandro', 'Bowman');
+    received.health = 0;
+    received.levelUp();
+  }).toThrow();
+});
+
 test('Test Death', () => {
   const expected = 0;
 
@@ -38,9 +61,11 @@ test('Test Bowman', () => {
     type: 'Bowman',
     health: 100,
     level: 1,
+    damage: expect.any(Function),
+    levelUp: expect.any(Function),
   };
 
-  const received = new Character('Sandro', 'Bowman');
+  const received = new Bowman('Sandro', 'Bowman');
 
   expect(received).toEqual(expected);
 });
@@ -53,9 +78,11 @@ test('Test Swordsman', () => {
     type: 'Swordsman',
     health: 100,
     level: 1,
+    damage: expect.any(Function),
+    levelUp: expect.any(Function),
   };
 
-  const received = new Character('Sandro', 'Swordsman');
+  const received = new Swordsman('Sandro', 'Swordsman');
 
   expect(received).toEqual(expected);
 });
@@ -68,9 +95,11 @@ test('Test Magician', () => {
     type: 'Magician',
     health: 100,
     level: 1,
+    damage: expect.any(Function),
+    levelUp: expect.any(Function),
   };
 
-  const received = new Character('Sandro', 'Magician');
+  const received = new Magician('Sandro', 'Magician');
 
   expect(received).toEqual(expected);
 });
@@ -83,9 +112,11 @@ test('Test Daemon', () => {
     type: 'Daemon',
     health: 100,
     level: 1,
+    damage: expect.any(Function),
+    levelUp: expect.any(Function),
   };
 
-  const received = new Character('Sandro', 'Daemon');
+  const received = new Daemon('Sandro', 'Daemon');
 
   expect(received).toEqual(expected);
 });
@@ -98,9 +129,11 @@ test('Test Undead', () => {
     type: 'Undead',
     health: 100,
     level: 1,
+    damage: expect.any(Function),
+    levelUp: expect.any(Function),
   };
 
-  const received = new Character('Sandro', 'Undead');
+  const received = new Undead('Sandro', 'Undead');
 
   expect(received).toEqual(expected);
 });
@@ -113,9 +146,11 @@ test('Test Zombie', () => {
     type: 'Zombie',
     health: 100,
     level: 1,
+    damage: expect.any(Function),
+    levelUp: expect.any(Function),
   };
 
-  const received = new Character('Sandro', 'Zombie');
+  const received = new Zombie('Sandro', 'Zombie');
 
   expect(received).toEqual(expected);
 });
